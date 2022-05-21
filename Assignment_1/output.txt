@@ -1,0 +1,13 @@
+Addition
+32 4
+6 3
+2 1
+8 0
+2 3
+4 56
+Multiplication
+2 5
+4 2
+1 1
+1 4Addition
+Multiplication

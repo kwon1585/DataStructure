@@ -21,28 +21,38 @@ void insert_node(Polyhead *poly, int coef, int exp)
 
 void create_poly(FILE *file, Polyhead *poly1, Polyhead *poly2)
 {
-    //Need to Fix
     int coef, exp;
     char buf[MAX] = {};
 
-    while (buf[0] != '\n')
+    while (fgets(buf, MAX, file)[0] != '\n')
     {
-        fgets(buf, MAX, file);
-        sscanf(buf, "%d %d", coef, exp);
+        sscanf(buf, "%d %d", &coef, &exp);
         insert_node(poly1, coef, exp);        
     }
-    while (fgets(buf, MAX, file)){
-        sscanf(buf, "%d %d", coef, exp);
+    while (fgets(buf, MAX, file))
+    {
+        sscanf(buf, "%d %d", &coef, &exp);
         insert_node(poly2, coef, exp); 
     }
-
-    return;
 }
 
-
-void print_poly()
+void print_poly(FILE *file, Polyhead *poly1, Polyhead *poly2)
 {
+    Polynode *node1 = poly1->head;
+    Polynode *node2 = poly2->head;
 
+    fprintf(file, "Addition\n");
+    while(node1)
+    {
+        fprintf(file, "%d %d\n", node1->coef, node1->exp);
+        node1 = node1->link;
+    }
+    fprintf(file, "Multiplication");
+    while(node2)
+    {
+        fprintf(file, "\n%d %d", node2->coef, node2->exp);
+        node2 = node2->link;
+    }
 }
 
 void delete_poly()

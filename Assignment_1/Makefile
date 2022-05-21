@@ -1,24 +1,18 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRC_DIR = .
 SRCS = main.c operation.c polynomial.c
 OBJS = $(SRCS:.c=.o)
 
 TARGET = polynomial.out
 
-all : $(TARGET)
+all : fclean $(TARGET)
 
 $(TARGET) : $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
-
-clean : 
 	rm -f $(OBJS)
 
-fclean : clean
-	rm -f $(TARGET)
+fclean :
+	rm -f $(OBJS) $(TARGET)
 
-re : fclean all
-
-$(SRC_DIR)/%.o : %.c
+%.o : %.c
 	$(CC) $(CFLAGS) -c $^
-

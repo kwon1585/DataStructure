@@ -7,9 +7,9 @@
 # define MAX 200
 
 typedef struct PolynomialNode{
-  int       coef;
-  int       exp;
-  Polynode  *link;
+  int                     coef;
+  int                     exp;
+  struct PolynomialNode   *link;
 }Polynode;
 
 typedef struct PolynomialHeader{
@@ -18,7 +18,12 @@ typedef struct PolynomialHeader{
   Polynode  *tail;
 }Polyhead;
 
-Polyhead add_poly();
-Polyhead mul_poly();
+void insert_node(Polyhead *poly, int coef, int exp);
+void create_poly(FILE *file, Polyhead *poly1, Polyhead *poly2);
+void print_poly(FILE *file, Polyhead *poly1, Polyhead *poly2);
+void delete_poly();
+
+Polyhead add_poly(Polyhead *poly1, Polyhead *poly2);
+Polyhead mul_poly(Polyhead *poly1, Polyhead *poly2);
 
 #endif
