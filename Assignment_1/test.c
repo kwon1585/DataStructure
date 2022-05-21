@@ -2,16 +2,17 @@
 #include <stdlib.h>
 
 int main(){
+    FILE *file_in = fopen("input.txt", "rt");
+    char tmp[100];
+    char tmp1[100];
+    int cnt=0, cnt2;
 
-  FILE *file = fopen("input.txt", "rt");	
-  char line[100];
-  int num = 0;
+    
+    while(cnt < 10){
+        char *cnt2 = fgets(tmp, 100, file_in);
+        printf("%d\n", cnt2);
+        cnt++;
+    }
 
-  while (fgets(line, sizeof(line), file) != NULL ) {
-	  printf("%s", line);
-    if (line[0] == '\n') num++;
-  }
-
-  printf("%d", num);
-  return 0;
-} 
+    return 0;
+}

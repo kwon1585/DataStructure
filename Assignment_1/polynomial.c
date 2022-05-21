@@ -1,43 +1,51 @@
 #include "polynomial.h"
 
-Polyhead add_poly(){
-  Polyhead poly_add;
+void insert_node(Polyhead *poly, int coef, int exp)
+{
+    Polynode *new_node = (Polynode *)malloc(sizeof(Polynode));
+    if (new_node == NULL)
+        return insert_node(poly, coef, exp);
+    new_node->coef = coef;
+    new_node->exp = exp;
+    new_node->link = NULL;
 
-  return poly_add;
+    if (poly->head == NULL)
+        poly->head = poly->tail = new_node;
+    else
+    {
+        poly->tail->link = new_node;
+        poly->tail = new_node;
+    }
+    poly->length++;
 }
 
-Polyhead mul_poly(){
-  Polyhead poly_mul;
+void create_poly(FILE *file, Polyhead *poly1, Polyhead *poly2)
+{
+    //Need to Fix
+    int coef, exp;
+    char buf[MAX] = {};
 
-  return poly_mul;
+    while (buf[0] != '\n')
+    {
+        fgets(buf, MAX, file);
+        sscanf(buf, "%d %d", coef, exp);
+        insert_node(poly1, coef, exp);        
+    }
+    while (fgets(buf, MAX, file)){
+        sscanf(buf, "%d %d", coef, exp);
+        insert_node(poly2, coef, exp); 
+    }
+
+    return;
 }
 
 
+void print_poly()
+{
 
-int main(void){
-  FILE *file_in = fopen("input.txt", "rt");
-  FILE *file_out = fopen("output.txt", "wt");
-
-  Polyhead poly1, poly2;
-  create_poly(file_in, &poly1, &poly2);
-
-  Polyhead poly_add = add_poly(&poly1, &poly2);
-  Polyhead poly_mul = mul_poly(&poly1, &poly2);
-
-  print_poly(&poly_add, &poly_mul);
-  delete_poly(&poly1, &poly2);
-
-  fclose(file_in);
-  fclose(file_out);
-
-  return 0;
 }
 
+void delete_poly()
+{
 
-
-// input -> 파일 오류 찾기 NULL값이면 fopen 실패
-// poly_list 생성 -> 다항식 오류 찾기
-
-// 문제 없으면 합 곱
-
-// 출력
+}
