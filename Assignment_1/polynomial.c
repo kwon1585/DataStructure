@@ -16,7 +16,6 @@ void insert_node(Polyhead *poly, int coef, int exp)
     poly->tail->link = new_node;
     poly->tail = new_node;
   }
-  poly->length++;
 }
 
 
@@ -57,10 +56,61 @@ void print_poly(FILE *file, Polyhead *poly1, Polyhead *poly2)
     fprintf(file, "\n%d %d", node2->coef, node2->exp);
     node2 = node2->link;
   }
+
+  delete_poly(poly1);
+  delete_poly(poly2);
 }
 
 
-void delete_poly()
+void delete_poly(Polyhead *poly)
 {
+  Polynode *node = poly->head;
+  Polynode *next;
 
+  while (node)
+  {
+    next = node->link;
+    free(node);
+    node = next;
+  }
+}
+
+
+void sort_poly(Polyhead *poly){
+  Polynode  *node = poly->head;
+  Polynode  *comp;
+
+  while (node)
+  {
+    comp = node->link;
+    while (comp)
+    {
+      if (node->exp < comp->exp)
+      {
+        SWAP(node->exp, comp->exp);
+        SWAP(node->coef, comp->coef);
+      }
+      comp = comp->link;
+    }
+    node = node->link;
+  }
+}
+
+
+void same_exp(Polyhead *poly){
+  Polynode *node = poly->head;
+  Polynode *next;
+
+  while (node && node->link)
+  {
+    next = node->link;
+    if (node->exp == next->exp)
+    {
+      node->coef += next->coef;
+      node->link = next->link;
+      free(next);
+    }
+    if (node->exp != node->link->exp)
+      node = node->link;
+  }
 }
