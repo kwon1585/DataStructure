@@ -3,11 +3,16 @@
 int main(void)
 {
   FILE *file_in = fopen("input.txt", "rt");
-  FILE *file_out = fopen("output.txt", "wt");
+  //FILE *file_out = fopen("output.txt", "wt");
 
-  char **map = create_map(file_in);
+  char maze[MAX][MAX] = {0,};
+  create_maze(file_in, maze);
+  for (int i = 0; i < MAX; i++)
+  {
+    printf("%c ", maze[0][i]);
+  }
 
-  print_map();
+  print_maze();
 
   return 0;
 }

@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = main.c
+SRCS = main.c maze.c
 OBJS = $(SRCS:.c=.o)
 
 TARGET = maze.out
