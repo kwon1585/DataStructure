@@ -2,10 +2,9 @@
 # define MAZE_H
 
 # include <stdio.h>
-# include <stdlib.h>
 
 # define MAX 100
-# define MAX_STACK_SIZE 5000
+# define MAX_STACK_SIZE 10000
 
 typedef struct point{
     int row;

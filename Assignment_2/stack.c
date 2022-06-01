@@ -29,6 +29,8 @@ point pop(void)
 	point rtn;
 	do
 	{
+		if (top == 0)
+			break;
 		rtn = stack[--top];
 	} while (maze[rtn.row][rtn.col] == '2');
 
@@ -38,7 +40,7 @@ point pop(void)
 
 int is_empty(void)
 {
-  if (top == 0)
+  if (top <= 0)
     return 1;
 	return 0;
 }

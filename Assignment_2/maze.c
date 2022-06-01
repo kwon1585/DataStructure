@@ -33,7 +33,6 @@ void find_path(point now_loc)
     printf("실패");
     return;
   } 
-
   next_loc = pop();
   if (maze[next_loc.row][next_loc.col] == 'X')
   {
