@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = main.c tree.c
+SRCS = main.c tree.c queue.c
 OBJS = $(SRCS:.c=.o)
 
 TARGET = bst.out
