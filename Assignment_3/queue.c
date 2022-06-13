@@ -28,7 +28,7 @@ void dequeue(q_head *header, FILE *file)                                        
 
 	if (delete_node->tree_node == NULL)                                           //제거하면서 멤버인 트리노드의 포인터가 가리키는 노드의 좌우 노드를 큐에 삽입하는데
 	{                                                                             //비어있는 노드, 즉 NULL을 가리킬 경우 0을 출력하고 빈 노드를 계속 집어넣는다.
-		fprintf(file, "0");
+		fprintf(file, "0");                                                         //이 때 빠지는 값의 자녀 노드를 넣는 것이므로 레벨을 +1 하여 집어넣는다.
 		enqueue(header, NULL, (delete_node->level)+1);
 		enqueue(header, NULL, (delete_node->level)+1);
 	}
